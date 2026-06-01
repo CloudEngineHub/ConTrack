@@ -96,6 +96,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
   --data <data/xhand/*.h5> \
   --experiment_name XarmXhand \
   --num_envs 8000 \
+  --save_interval 200 \
   --headless \
   --logger wandb \
   --log_project_name ConTrack \

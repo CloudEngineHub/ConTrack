@@ -25,7 +25,7 @@ class RslRlPpoAlgorithmCmdpCfg(RslRlPpoAlgorithmCfg):
 class PPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 16
     max_iterations = 100_000
-    save_interval = 1_000
+    save_interval = 200
     video_length = 500
     experiment_name = "XarmXhand-Mimic"
     policy = RslRlPpoActorCriticCfg(
