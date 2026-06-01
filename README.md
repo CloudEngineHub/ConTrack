@@ -104,6 +104,14 @@ CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
   --video_num_envs 9
 ```
 
+Wandb should log the training video every 200 iterations. If you can't see the video, please check the vulkan configuration:
+
+```bash
+apt-get update
+apt-get install -y libxt6 libglu1-mesa vulkan-tools
+vulkaninfo --summary
+```
+
 ## License
 
 Repository code is released under the BSD 3 Clause License. Third-party assets, dataset clips, and code adapted from upstream projects retain their own terms.
