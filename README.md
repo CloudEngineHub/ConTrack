@@ -33,6 +33,7 @@ cd
 git clone https://github.com/isaac-sim/IsaacLab.git
 cd IsaacLab
 git checkout 42e61645c96bac08135566634785cdc87728d5ab
+python -m pip install "setuptools<82" wheel
 python -m pip install --no-build-isolation flatdict==4.0.1
 ./isaaclab.sh --install rsl-rl
 ```
@@ -40,6 +41,7 @@ python -m pip install --no-build-isolation flatdict==4.0.1
 ### ConTrack Setup
 
 ```bash
+cd
 git clone https://github.com/EmptyBlueBox/ConTrack.git
 cd ConTrack
 python -m pip install -r requirements.txt
@@ -84,31 +86,20 @@ python scripts/tools/convert_urdf.py \
   --fix-base
 ```
 
-### Data
-
-DexterHand demonstration clips are included under `data/xhand`.
-
-```text
-data/xhand/dexterhand-Cuboid_00-fps_20-xarm7_xhand-5880_5940.h5
-data/xhand/dexterhand-Cuboid_01-fps_20-xarm7_xhand-7824_7864.h5
-data/xhand/dexterhand-Cylinder_00-fps_20-xarm7_xhand-3600_3700.h5
-data/xhand/dexterhand-Ring_00-fps_20-xarm7_xhand-10240_10340.h5
-```
-
-GRAB and ARCTIC derived clips are excluded. Additional demonstrations can be placed under `data/xhand` and selected with `--data`.
-
 ## Training
+
+Replace `<data/xhand/*.h5>` and `<dexterhand_*>` with the actual path to the training data and description.
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
   --task Isaac-Xarm-Xhand-Mimic-Manager-v0 \
-  --data data/xhand/dexterhand-Cylinder_00-fps_20-xarm7_xhand-3600_3700.h5 \
+  --data <data/xhand/*.h5> \
   --experiment_name XarmXhand \
-  --num_envs 7500 \
+  --num_envs 8000 \
   --headless \
   --logger wandb \
   --log_project_name ConTrack \
-  --wandb_description dexterhand_cylinder \
+  --wandb_description <dexterhand_*> \
   --video_num_envs 9
 ```
 
