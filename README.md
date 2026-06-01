@@ -88,7 +88,7 @@ python scripts/tools/convert_urdf.py \
 
 ## Training
 
-Replace `<data/xhand/*.h5>` and `<dexterhand_*>` with the actual path to the training data and description.
+Replace `<data/xhand/*.h5>` with the actual path to the reference trajectory data.
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
@@ -100,7 +100,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
   --headless \
   --logger wandb \
   --log_project_name ConTrack \
-  --wandb_description <dexterhand_*> \
+  --wandb_description test \
   --video_num_envs 9
 ```
 

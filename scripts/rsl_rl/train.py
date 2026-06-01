@@ -404,7 +404,6 @@ def main(
     cfg = agent_cfg.to_dict()
     base_name = Path(log_dir).name
     m = re.search(r"\d{4}_\d{2}_\d{2}-\d{2}_\d{2}_\d{2}", base_name)
-    cfg["wandb_run_name"] = Path(env_cfg.reference_path).stem
     cfg["start_timestamp"] = m.group(0) if m else ""
     desc = ""
     if m:
@@ -414,6 +413,7 @@ def main(
             if agent_cfg.run_name and desc.endswith(f"_{agent_cfg.run_name}"):
                 desc = desc[: -(len(agent_cfg.run_name) + 1)]
     cfg["description"] = desc
+    cfg["wandb_run_name"] = Path(env_cfg.reference_path).stem + (f"-{desc}" if desc else "")
     if agent_cfg.class_name == "OnPolicyRunner":
         runner = OnPolicyRunner(env, cfg, log_dir=log_dir, device=agent_cfg.device)
     elif agent_cfg.class_name == "DistillationRunner":
