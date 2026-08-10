@@ -86,9 +86,25 @@ python scripts/tools/convert_urdf.py \
   --fix-base
 ```
 
+Convert the RB-Y1A Sharpa URDF file to USD.
+
+```bash
+python scripts/tools/convert_urdf.py \
+  assets/urdf/rby1a_sharpa.urdf \
+  assets/usd/rby1a_sharpa/rby1a_sharpa.usd \
+  --merge-joints \
+  --joint-stiffness 0.0 \
+  --joint-damping 0.0 \
+  --joint-target-type none \
+  --headless \
+  --fix-base
+```
+
 ## Training
 
-Replace `<data/xhand/*.h5>` with the actual path to the reference trajectory data.
+### xArm with XHand
+
+Replace `<data/xhand/*.h5>` with the actual path to the xArm XHand reference trajectory.
 
 ```bash
 CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
@@ -96,6 +112,24 @@ CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
   --data <data/xhand/*.h5> \
   --experiment_name XarmXhand \
   --num_envs 8000 \
+  --save_interval 200 \
+  --headless \
+  --logger wandb \
+  --log_project_name ConTrack \
+  --wandb_description test \
+  --video_num_envs 9
+```
+
+### RB-Y1A with Sharpa
+
+Replace `<data/sharpa/*.h5>` with the actual path to the RB-Y1A Sharpa reference trajectory.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python scripts/rsl_rl/train.py \
+  --task Isaac-Rby1a-Sharpa-Mimic-Manager-v0 \
+  --data <data/sharpa/*.h5> \
+  --experiment_name Rby1aSharpa \
+  --num_envs 6000 \
   --save_interval 200 \
   --headless \
   --logger wandb \

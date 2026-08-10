@@ -5,4 +5,4 @@
 
 """Manager-based ConTrack tasks."""
 
-from . import mimic_xarm_xhand  # noqa: F401
+from ConTrack.tasks.manager_based import mimic_rby1a_sharpa, mimic_xarm_xhand  # noqa: F401

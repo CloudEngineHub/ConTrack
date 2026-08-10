@@ -20,6 +20,7 @@ _isaac_sim?
 env_isaaclab/
 
 assets/usd/
+assets/usd_cache/
 assets/meshes_simplify_collision/
 assets/urdf_simplify_collision/
 
@@ -28,3 +29,8 @@ data/*
 !data/xhand/
 data/xhand/*
 !data/xhand/dexterhand-*.h5
+!data/xhand/arctic-*.h5
+!data/xhand/grab-*.h5
+!data/sharpa/
+data/sharpa/*
+!data/sharpa/*.h5

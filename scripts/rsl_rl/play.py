@@ -41,9 +41,15 @@ if session_dir is not None:
     session_reference_path = str(ref.resolve())
 
 if args_cli.data is not None:
-    os.environ["CONTRACK_XARM_XHAND_DATA"] = args_cli.data
+    if "Rby1a-Sharpa" in args_cli.task:
+        os.environ["CONTRACK_RBY1A_SHARPA_DATA"] = args_cli.data
+    else:
+        os.environ["CONTRACK_XARM_XHAND_DATA"] = args_cli.data
 elif session_reference_path:
-    os.environ["CONTRACK_XARM_XHAND_DATA"] = session_reference_path
+    if "Rby1a-Sharpa" in args_cli.task:
+        os.environ["CONTRACK_RBY1A_SHARPA_DATA"] = session_reference_path
+    else:
+        os.environ["CONTRACK_XARM_XHAND_DATA"] = session_reference_path
 
 if args_cli.video:
     args_cli.enable_cameras = True
